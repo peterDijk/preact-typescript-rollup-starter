@@ -1,4 +1,6 @@
-import {h, render} from 'preact'
-import HelloWorld from './HelloWorld'
+import { h, render } from 'preact';
+import { Main } from './Main';
 
-render(<HelloWorld name='world' />, document.body)
+const root = document.getElementById('root') as HTMLElement;
+
+render(<Main />, root);

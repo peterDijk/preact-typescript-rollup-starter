@@ -3,10 +3,11 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import serve from 'rollup-plugin-serve';
-// import uglify from 'rollup-plugin-uglify';
+import { uglify } from 'rollup-plugin-uglify';
+import htmlTemplate from 'rollup-plugin-generate-html-template';
 
 export default {
-    input: './dist/es7/index.js',
+    input: './dist/es5/index.js',
     output: {
         file: `dist/app.bundle.js`,
         format: 'iife', // what is iife
@@ -15,6 +16,10 @@ export default {
 
     },
     plugins: [
+        htmlTemplate({
+            template: './template.html',
+            target: 'index.html',
+        }),
         replace({
             'process.env.NODE_ENV': JSON.stringify('production'),
           }),
@@ -24,16 +29,9 @@ export default {
         resolve(),
         commonjs(),
         serve({
-            // Launch in browser (default: false)
-            open: true,
-           
-            // Page to navigate to when opening the browser.
-            // Will not do anything if open=false.
-            // Remember to start with a slash.
-            openPage: '/index.html',
             host: 'localhost',
             port: 8000,
-        })
-        // uglify ? 
+        }),
+        uglify(),
     ],
 }
