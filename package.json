@@ -1,5 +1,5 @@
 {
-  "name": "preact-ts-rollup",
+  "name": "preact-ts-rollup-starter",
   "version": "1.0.0",
   "main": "index.js",
   "module": "dist/bundle.js",
@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "series": "set -e; foo() for i in $@; do npm run $i; done; foo",
+    "start": "concurrently --kill-others \"npm run tsc:watch\" \"npm run build:watch\" \"node server.js\" --prefix \"[{name}]\" --names \"TSC,ROLLUP,SERVER\"",
     "clean": "rm -rf dist/*",
     "tsc": "tsc --outDir dist/es7",
     "babel": "babel --out-dir dist/es5 dist/es7",
@@ -19,13 +20,15 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
+    "concurrently": "^4.1.2",
+    "jspm": "^2.0.0-beta.7",
+    "jspm-hmr": "^1.0.0-rc7",
     "rollup": "^1.22.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "typescript": "^3.6.3"
   },
   "dependencies": {
-    "concurrent": "^0.3.2",
     "core-js": "^3.2.1",
     "preact": "^10.0.0"
   },
