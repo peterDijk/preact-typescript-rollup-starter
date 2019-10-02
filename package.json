@@ -7,13 +7,14 @@
   "author": "Peter van Dijk <petervandijk@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently --kill-others \"npm run tsc:watch\" \"npm run build:watch\"",
+    "start": "concurrently --kill-others \"npm run tsc:watch\" \"npm run rollup:watch\"",
     "tsc": "tsc -p ./",
     "tsc:watch": "tsc -p ./ -w",
     "clean": "rm -rf dist/*",
     "babel": "babel --out-dir dist/es5 dist/es7",
-    "build": "rollup -c rollup.config.js",
-    "build:watch": "rollup -c rollup.config.js -w"
+    "rollup": "rollup -c rollup.config.js",
+    "rollup:watch": "rollup -c rollup.config.js -w",
+    "build": "npm run clean && npm run tsc && npm run rollup"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

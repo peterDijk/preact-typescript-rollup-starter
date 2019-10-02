@@ -28,10 +28,10 @@ export default {
           }),
         resolve(),
         commonjs(),
-        serve({
-            host: 'localhost',
-            port: 8000,
-        }),
+        // serve({
+        //     host: 'localhost',
+        //     port: 8000,
+        // }),
         uglify(),
     ],
 }
