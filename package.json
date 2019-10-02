@@ -7,15 +7,13 @@
   "author": "Peter van Dijk <petervandijk@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "series": "set -e; foo() for i in $@; do npm run $i; done; foo",
     "start": "concurrently --kill-others \"npm run tsc:watch\" \"npm run build:watch\" \"node server.js\" --prefix \"[{name}]\" --names \"TSC,ROLLUP,SERVER\"",
+    "tsc": "tsc -p ./",
+    "tsc:watch": "tsc -p ./ -w",
     "clean": "rm -rf dist/*",
-    "tsc": "tsc --outDir dist/es7",
     "babel": "babel --out-dir dist/es5 dist/es7",
-    "rollup": "rollup -c --input dist/es7/index.js",
-    "rollup-es5": "rollup -c --input dist/es5/index.js",
-    "build": "yarn series clean tsc rollup",
-    "build-ie": "yarn series clean tsc babel rollup-es5"
+    "build": "rollup -c rollup.config.js",
+    "build:watch": "rollup -c rollup.config.js -w"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
@@ -30,7 +28,10 @@
   },
   "dependencies": {
     "core-js": "^3.2.1",
-    "preact": "^10.0.0"
+    "preact": "^10.0.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-uglify": "^6.0.3"
   },
   "babel": {
     "inputSourceMap": true,
