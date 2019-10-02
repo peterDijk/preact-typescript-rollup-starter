@@ -14,10 +14,7 @@
     "clean": "rm -rf dist/*",
     "babel": "babel --out-dir dist/es5 dist/es7",
     "build": "rollup -c rollup.config.js",
-    "build:watch": "rollup -c rollup.config.js -w",
-    "series": "set -e; foo() for i in $@; do npm run $i; done; foo",
-    "rollup": "rollup -c --input dist/es7/index.js",
-    "build-nowatch": "yarn series clean tsc rollup"
+    "build:watch": "rollup -c rollup.config.js -w"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
