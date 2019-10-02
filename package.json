@@ -2,5 +2,58 @@
   "name": "preact-ts-rollup",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "module": "dist/bundle.js",
+  "private": true,
+  "author": "Peter van Dijk <petervandijk@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "series": "set -e; foo() for i in $@; do npm run $i; done; foo",
+    "clean": "rm -rf dist/*",
+    "tsc": "tsc --outDir dist/es7",
+    "babel": "babel --out-dir dist/es5 dist/es7",
+    "rollup": "rollup -c --input dist/es7/index.js",
+    "rollup-es5": "rollup -c --input dist/es5/index.js",
+    "build": "yarn series clean tsc rollup",
+    "build-ie": "yarn series clean tsc babel rollup-es5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "rollup": "^1.22.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "typescript": "^3.6.3"
+  },
+  "dependencies": {
+    "concurrent": "^0.3.2",
+    "core-js": "^3.2.1",
+    "preact": "^10.0.0"
+  },
+  "babel": {
+    "inputSourceMap": true,
+    "sourceMap": true,
+    "ignore": [
+      "node_modules"
+    ],
+    "presets": [
+      [
+        "@babel/env",
+        {
+          "debug": true,
+          "loose": true,
+          "modules": false,
+          "useBuiltIns": "usage"
+        }
+      ]
+    ],
+    "plugins": []
+  },
+  "browserslist": [
+    "Chrome 68",
+    "Edge 17",
+    "Explorer 11",
+    "Firefox 61",
+    "iOS 11",
+    "Safari 11"
+  ]
 }
