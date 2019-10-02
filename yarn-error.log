@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/petervandijk/.nvm/versions/node/v10.16.3/bin/node /usr/local/Cellar/yarn/1.15.2/libexec/bin/yarn.js build-nowatch
+  /Users/petervandijk/.nvm/versions/node/v10.16.3/bin/node /usr/local/Cellar/yarn/1.15.2/libexec/bin/yarn.js add @types/preact
 
 PATH: 
   /Users/petervandijk/.nvm/versions/node/v10.16.3/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin
@@ -14,12 +14,17 @@ Platform:
   darwin x64
 
 Trace: 
-  SyntaxError: /Users/petervandijk/code/201910_PreactTSStarter/preact-ts-rollup/package.json: Unexpected token } in JSON at position 849
-      at JSON.parse (<anonymous>)
-      at /usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:1625:59
-      at Generator.next (<anonymous>)
-      at step (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:304:30)
-      at /usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:315:13
+  Error: https://registry.yarnpkg.com/@types%2fpreact: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:66058:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:129541:22)
+      at Request.emit (events.js:198:13)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:130513:10)
+      at Request.emit (events.js:198:13)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:130435:12)
+      at Object.onceWrapper (events.js:286:20)
+      at IncomingMessage.emit (events.js:203:15)
+      at endReadableNT (_stream_readable.js:1145:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
 
 npm manifest: 
   {
@@ -32,16 +37,13 @@ npm manifest:
     "license": "MIT",
     "scripts": {
       "start": "concurrently --kill-others \"npm run tsc:watch\" \"npm run build:watch\" \"node server.js\" --prefix \"[{name}]\" --names \"TSC,ROLLUP,SERVER\"",
+      "start-noserver": "concurrently --kill-others \"npm run tsc:watch\" \"npm run build:watch\"",
       "tsc": "tsc -p ./",
       "tsc:watch": "tsc -p ./ -w",
       "clean": "rm -rf dist/*",
       "babel": "babel --out-dir dist/es5 dist/es7",
       "build": "rollup -c rollup.config.js",
-      "build:watch": "rollup -c rollup.config.js -w",
-      "series": "set -e; foo() for i in $@; do npm run $i; done; foo",
-      "rollup": "rollup -c --input dist/es7/index.js",
-      "rollup-es5": "rollup -c --input dist/es5/index.js",
-      "build-nowatch": "yarn series clean tsc rollup",
+      "build:watch": "rollup -c rollup.config.js -w"
     },
     "devDependencies": {
       "@babel/core": "^7.6.2",
@@ -50,16 +52,17 @@ npm manifest:
       "jspm": "^2.0.0-beta.7",
       "jspm-hmr": "^1.0.0-rc7",
       "rollup": "^1.22.0",
+      "rollup-plugin-babel": "^4.3.3",
       "rollup-plugin-commonjs": "^10.1.0",
       "rollup-plugin-node-resolve": "^5.2.0",
+      "rollup-plugin-replace": "^2.2.0",
+      "rollup-plugin-serve": "^1.0.1",
+      "rollup-plugin-uglify": "^6.0.3",
       "typescript": "^3.6.3"
     },
     "dependencies": {
       "core-js": "^3.2.1",
-      "preact": "^10.0.0",
-      "rollup-plugin-babel": "^4.3.3",
-      "rollup-plugin-replace": "^2.2.0",
-      "rollup-plugin-uglify": "^6.0.3"
+      "preact": "^10.0.0"
     },
     "babel": {
       "inputSourceMap": true,
@@ -2869,6 +2872,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
     integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
   
+  mime@>=2.0.3:
+    version "2.4.4"
+    resolved "https://registry.yarnpkg.com/mime/-/mime-2.4.4.tgz#bd7b91135fc6b01cde3e9bae33d659b63d8857e5"
+    integrity sha512-LRxmNwziLPT828z+4YkNzloCFC2YM4wrB99k+AV5ZbEyfGNWfG8SO1FUXLmLDBSo89NrJZ4DIWeLjy1CHGhMGA==
+  
   mimic-fn@^1.0.0:
     version "1.2.0"
     resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-1.2.0.tgz#820c86a39334640e99516928bd03fca88057d022"
@@ -3229,7 +3237,7 @@ Lockfile:
     dependencies:
       mimic-fn "^1.0.0"
   
-  opener@^1.4.3:
+  opener@1, opener@^1.4.3:
     version "1.5.1"
     resolved "https://registry.yarnpkg.com/opener/-/opener-1.5.1.tgz#6d2f0e77f1a0af0032aca716c2c1fbb8e7e8abed"
     integrity sha512-goYSy5c2UXE4Ra1xixabeVh1guIX/ZV/YokJksb6q2lubWu6UbvPQ20p542/sFIll1nl8JnCyK9oBaOcCWXwvA==
@@ -3799,6 +3807,14 @@ Lockfile:
     dependencies:
       magic-string "^0.25.2"
       rollup-pluginutils "^2.6.0"
+  
+  rollup-plugin-serve@^1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/rollup-plugin-serve/-/rollup-plugin-serve-1.0.1.tgz#2da2a784a916c5564609c7696cd9dacdbf17f6cc"
+    integrity sha512-bni0pb4s1YLvn1xBmj+dH1OsLdp8gWA4zqh3yuEtT6/YHhg3nDneGU2GwMcRDQwY2tXzuI0uSeAlF1rY+ODitg==
+    dependencies:
+      mime ">=2.0.3"
+      opener "1"
   
   rollup-plugin-terser@^4.0.4:
     version "4.0.4"
