@@ -1,16 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es2015", // 100% native support on Chrome, iOS, Edge, Safari, FF
-    "module": "es2015",
+    "target": "es5",
+    "module": "esnext",
     "jsx": "react",
     "jsxFactory": "h",
     "declaration": true,
     "declarationDir": "dist/dts",
     "sourceMap": true,
-    "outDir": "dist/es5", // See also package.json scripts.tsc.
     "strict": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node"
   },
 
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*"]
 }

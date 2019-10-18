@@ -1,37 +1,45 @@
-import replace from 'rollup-plugin-replace';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import babel from 'rollup-plugin-babel';
-import serve from 'rollup-plugin-serve';
-import { uglify } from 'rollup-plugin-uglify';
-import htmlTemplate from 'rollup-plugin-generate-html-template';
+import typescript from "rollup-plugin-typescript2";
+import replace from "rollup-plugin-replace";
+import nodeResolve from "rollup-plugin-node-resolve";
+import commonjs from "rollup-plugin-commonjs";
+import serve from "rollup-plugin-serve";
+import livereload from "rollup-plugin-livereload";
+import htmlTemplate from "rollup-plugin-generate-html-template";
+import { uglify } from "rollup-plugin-uglify";
+import copy from "rollup-plugin-copy";
 
 export default {
-    input: './dist/es5/index.js',
-    output: {
-        file: `dist/app.bundle.js`,
-        format: 'iife', // what is iife
-        sourcemap: true,
-        treeshake: true, // what why?
-
-    },
-    plugins: [
-        htmlTemplate({
-            template: './template.html',
-            target: 'index.html',
-        }),
-        replace({
-            'process.env.NODE_ENV': JSON.stringify('production'),
-          }),
-          babel({
-            exclude: 'node_modules/**' // only transpile our source code
-          }),
-        resolve(),
-        commonjs(),
-        // serve({
-        //     host: 'localhost',
-        //     port: 8000,
-        // }),
-        uglify(),
-    ],
-}
+  input: "./src/index.tsx",
+  output: {
+    file: `dist/app.bundle.js`,
+    format: "iife",
+    name: "bundle",
+    sourcemap: true,
+    treeshake: true
+  },
+  plugins: [
+    nodeResolve(),
+    commonjs(),
+    typescript({
+      objectHashIgnoreUnknownHack: true
+    }),
+    htmlTemplate({
+      template: "./template.html",
+      target: "index.html"
+    }),
+    copy({
+      targets: [{ src: "src/css", dest: "dist" }]
+    }),
+    replace({
+      "process.env.NODE_ENV": JSON.stringify("production")
+    }),
+    uglify(),
+    serve({
+      contentBase: "./dist",
+      open: true,
+      host: "localhost",
+      port: 9080
+    }),
+    livereload()
+  ]
+};

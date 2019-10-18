@@ -7,53 +7,36 @@
   "author": "Peter van Dijk <petervandijk@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently --kill-others \"npm run tsc:watch\" \"npm run rollup:watch\"",
+    "start": "npm run rollup:watch",
     "tsc": "tsc -p ./",
     "tsc:watch": "tsc -p ./ -w",
     "clean": "rm -rf dist/*",
-    "babel": "babel --out-dir dist/es5 dist/es7",
     "rollup": "rollup -c rollup.config.js",
     "rollup:watch": "rollup -c rollup.config.js -w",
-    "build": "npm run clean && npm run tsc && npm run rollup"
+    "build": "npm run clean && npm run rollup"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
-    "concurrently": "^4.1.2",
-    "jspm": "^2.0.0-beta.7",
-    "jspm-hmr": "^1.0.0-rc7",
     "rollup": "^1.22.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-copy": "^3.1.0",
     "rollup-plugin-generate-html-template": "^1.5.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-livereload": "^1.0.4",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-serve": "^1.0.1",
+    "rollup-plugin-typescript2": "^0.24.3",
     "rollup-plugin-uglify": "^6.0.3",
     "typescript": "^3.6.3"
   },
   "dependencies": {
     "core-js": "^3.2.1",
     "preact": "^10.0.0"
-  },
-  "babel": {
-    "inputSourceMap": true,
-    "sourceMap": true,
-    "ignore": [
-      "node_modules"
-    ],
-    "presets": [
-      [
-        "@babel/env",
-        {
-          "debug": true,
-          "loose": true,
-          "modules": false,
-          "useBuiltIns": "usage"
-        }
-      ]
-    ],
-    "plugins": []
   },
   "browserslist": [
     "Chrome 68",
