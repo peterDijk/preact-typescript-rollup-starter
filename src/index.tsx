@@ -1,6 +1,6 @@
-import { h, render } from 'preact';
-import { Main } from './Main';
+import { h, render } from "preact";
+import { App } from "./App";
 
-const root = document.getElementById('root') as HTMLElement;
+const root = document.getElementById("root") as HTMLElement;
 
-render(<Main />, root);
+render(<App />, root);
