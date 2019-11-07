@@ -34,12 +34,12 @@ export default {
       "process.env.NODE_ENV": JSON.stringify("production")
     }),
     uglify(),
-    serve({
-      contentBase: "./dist",
-      open: true,
-      host: "localhost",
-      port: 9080
-    }),
-    livereload()
+    // serve({
+    //   contentBase: "./dist",
+    //   open: true,
+    //   host: "localhost",
+    //   port: 9080
+    // }),
+    // livereload()
   ]
 };
