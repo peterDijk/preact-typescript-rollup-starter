@@ -1,9 +1,9 @@
 import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 
-export const sleep = (time: number): Promise<unknown> =>
+export const sleep = (time: number): Promise<string> =>
   new Promise(resolve => {
-    setTimeout(() => resolve(), time);
+    setTimeout(() => resolve("Hello world!"), time);
   });
 
 export const App = () => {
@@ -11,7 +11,7 @@ export const App = () => {
 
   useEffect(() => {
     sleep(1000).then(res => {
-      setText("Hello world!");
+      setText(res);
     });
   }, []);
 
