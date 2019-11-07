@@ -15,5 +15,5 @@ export const App = () => {
     });
   }, []);
 
-  return <div>{text}</div>;
+  return <div>{`>>> `}{text}</div>;
 };
