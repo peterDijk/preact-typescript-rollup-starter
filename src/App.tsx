@@ -17,7 +17,15 @@ export const App = () => {
 
   return (
     <div>
-      {`>> `}
+      <div>
+        <a
+          href="https://github.com/peterDijk/preact-typescript-rollup-starter"
+          target="_blank"
+        >
+          <img src="images/GitHub-Mark-32px.png" />
+        </a>
+      </div>
+      {`>>> `}
       {text}
     </div>
   );

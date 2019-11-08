@@ -29,7 +29,10 @@ export default {
       target: "index.html"
     }),
     copy({
-      targets: [{ src: "src/css", dest: "dist" }]
+      targets: [
+        { src: "src/css", dest: "dist" },
+        { src: "src/images", dest: "dist" }
+      ]
     }),
     uglify(),
     !production &&
