@@ -36,7 +36,8 @@
   },
   "dependencies": {
     "core-js": "^3.2.1",
-    "preact": "^10.0.0"
+    "preact": "^10.0.0",
+    "serialize-javascript": "^2.1.2"
   },
   "prettier": {
     "printWidth": 80,
