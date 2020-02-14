@@ -1,16 +1,16 @@
-import { h } from "preact";
-import { useEffect, useState } from "preact/hooks";
+import { h } from 'preact';
+import { useEffect, useState } from 'preact/hooks';
 
 export const sleep = (time: number): Promise<string> =>
-  new Promise(resolve => {
-    setTimeout(() => resolve("Hello world!"), time);
+  new Promise((resolve) => {
+    setTimeout(() => resolve('Preact Typescript w/ Rollup'), time);
   });
 
 export const App = () => {
-  const [text, setText] = useState<string>("wait for it ...");
+  const [text, setText] = useState<string>('...');
 
   useEffect(() => {
-    sleep(1000).then(res => {
+    sleep(1000).then((res) => {
       setText(res);
     });
   }, []);
@@ -25,7 +25,7 @@ export const App = () => {
           <img src="images/GitHub-Mark-32px.png" />
         </a>
       </div>
-      {`>>> `}
+      {/* >>> */}
       {text}
     </div>
   );
