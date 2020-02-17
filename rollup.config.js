@@ -2,7 +2,6 @@ import typescript from 'rollup-plugin-typescript2';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import serve from 'rollup-plugin-serve';
-import livereload from 'rollup-plugin-livereload';
 import htmlTemplate from 'rollup-plugin-generate-html-template';
 import { uglify } from 'rollup-plugin-uglify';
 import copy from 'rollup-plugin-copy';
