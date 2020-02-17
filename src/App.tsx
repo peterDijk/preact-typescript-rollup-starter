@@ -25,7 +25,6 @@ export const App = () => {
           <img src="images/GitHub-Mark-32px.png" />
         </a>
       </div>
-      {/* >>> */}
       {text}
     </div>
   );
