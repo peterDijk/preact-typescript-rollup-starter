@@ -22,7 +22,7 @@ export const App: FunctionComponent = () => {
           href="https://github.com/peterDijk/preact-typescript-rollup-starter"
           target="_blank"
         >
-          <img src="images/GitHub-Mark-32px.png" />
+          <img src="images/GitHub-Mark-Light-32px.png" />
         </a>
       </div>
       {text}
