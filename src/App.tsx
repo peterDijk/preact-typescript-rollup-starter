@@ -3,7 +3,7 @@ import { useEffect, useState } from 'preact/hooks';
 
 export const sleep = (time: number): Promise<string> =>
   new Promise((resolve) => {
-    setTimeout(() => resolve('Preact Typescript w/ Rollup'), time);
+    setTimeout(() => resolve('Preact Typescript w/ Rollup Starter Pack'), time);
   });
 
 export const App = () => {
