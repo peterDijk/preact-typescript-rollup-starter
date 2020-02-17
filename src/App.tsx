@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { h, FunctionComponent } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 
 export const sleep = (time: number): Promise<string> =>
@@ -6,7 +6,7 @@ export const sleep = (time: number): Promise<string> =>
     setTimeout(() => resolve('Preact Typescript w/ Rollup Starter Pack'), time);
   });
 
-export const App = () => {
+export const App: FunctionComponent = () => {
   const [text, setText] = useState<string>('...');
 
   useEffect(() => {
