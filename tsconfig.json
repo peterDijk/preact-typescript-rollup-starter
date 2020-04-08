@@ -4,8 +4,6 @@
     "module": "esnext",
     "jsx": "react",
     "jsxFactory": "h",
-    "declaration": true,
-    "declarationDir": "dist/dts",
     "sourceMap": true,
     "strict": true,
     "moduleResolution": "node"
