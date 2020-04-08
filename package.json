@@ -20,6 +20,8 @@
     "@babel/preset-env": "^7.6.2",
     "@rollup/plugin-json": "^4.0.2",
     "@rollup/plugin-replace": "^2.3.1",
+    "bl": "^0.9.5",
+    "levelup": "^4.3.2",
     "prettier": "^1.19.1",
     "rollup": "^2.3.4",
     "rollup-plugin-babel": "^4.3.3",
@@ -37,6 +39,7 @@
     "rollup-plugin-typescript2": "^0.27.0",
     "rollup-plugin-uglify": "^6.0.3",
     "rollup-plugin-workbox": "^5.0.1",
+    "semver": "^4.3.2",
     "tailwindcss": "^1.2.0",
     "typescript": "^3.8.3"
   },
